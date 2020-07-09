@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+       mc:Ignorable="d"
+       xmlns:views="clr-namespace:PocketCards.Views"
+       Title="PocketCards"
+       x:Class="PocketCards.AppShell">
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PageBackground">#EEEEEE</Color>
+        </ResourceDictionary>
+    </Shell.Resources>
+    
+    <TabBar>
+        <Tab Title="Cartas">
+            <ShellContent ContentTemplate="{DataTemplate views:CardsPage}"/>            
+        </Tab>
+        <Tab Title="Nova Carta">
+            <ShellContent ContentTemplate="{DataTemplate views:NewCardPage}"/>
+        </Tab>
+    </TabBar>
+</Shell>

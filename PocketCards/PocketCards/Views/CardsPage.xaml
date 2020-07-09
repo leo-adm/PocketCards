@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vm="clr-namespace:PocketCards.ViewModels" xmlns:views="clr-namespace:PocketCards.Views"
+             mc:Ignorable="d"
+             x:Class="PocketCards.Views.CardsPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#F6F6F6">
+    <ContentPage.Content>
+        <StackLayout>
+            <CarouselView ItemsSource="{Binding Cards}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal" Margin="20,20,20,0" HeightRequest="50">
+                                <Button Text="Descer \/" 
+                                        IsVisible="{Binding HasFlipped}"/>
+
+                                <Label Text="{Binding Card.Level, StringFormat='Nível {0}'}"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="Center"
+                                       TextColor="Black"
+                                       FontSize="Medium"/>  
+
+                                <Button Text="/\ Subir" 
+                                        IsVisible="{Binding HasFlipped}"/>
+                            </StackLayout>
+                            <Frame HasShadow="False"
+                                   BackgroundColor="#EEEEEE"
+                                   CornerRadius="20"
+                                   HeightRequest="384"
+                                   WidthRequest="216"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand"
+                                   BorderColor="{Binding BorderColor}"> 
+                                <StackLayout VerticalOptions="CenterAndExpand">
+                                    <Grid>
+                                        <Label Text="?" Opacity="0.05" FontSize="300" IsVisible="{Binding ShowFront}"
+                                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <Label Text="{Binding Card.Front}"
+                                               IsVisible="{Binding ShowFront}"
+                                               FontAttributes="Bold" FontSize="Large"
+                                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                               HorizontalTextAlignment="Center"/>
+                                    </Grid>
+                                    <Label Text="{Binding Card.Back}"
+                                           IsVisible="{Binding ShowBack}"
+                                           FontSize="Large"
+                                           HorizontalTextAlignment="Center"
+                                           RotationY="180"/>
+                                </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="FlipCard"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+                <CarouselView.EmptyView>
+                    <StackLayout>
+                        <Label Text="Não há cartas"
+                               FontSize="Large"
+                               FontAttributes="Italic"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                </CarouselView.EmptyView>
+            </CarouselView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
